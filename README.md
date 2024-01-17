@@ -63,8 +63,7 @@ Merges advanced technology with practical features to create a powerful safety c
 ## Installation and Setup
 
 - Clone the repository:
-git clone https://github.com/SanketSarmalkar/Stree_Kavach.git
-
+git clone https://github.com/abhik813/kavach-4k
 - Navigate to the project directory:
 cd stree-kawach
 - Install dependencies:
