@@ -65,7 +65,7 @@ Merges advanced technology with practical features to create a powerful safety c
 - Clone the repository:
 git clone https://github.com/abhik813/kavach-4k
 - Navigate to the project directory:
-cd stree-kawach
+cd kavach-4k
 - Install dependencies:
 flutter pub get
 - Run the app:
