@@ -59,7 +59,7 @@ Merges advanced technology with practical features to create a powerful safety c
 - Encourages a supportive network and provides valuable tips on staying alert in new locations.
 
 
-- 
+
 ## Installation and Setup
 
 - Clone the repository:
