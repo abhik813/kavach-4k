@@ -80,6 +80,9 @@ Please make sure you have Flutter and Dart SDK installed on your machine before 
 - Android Studio / Xcode (for simulators or physical devices)
 - Internet connectivity (for real-time location tracking and emergency notifications)
 
+## Download Kavach-4k
+- Kavach-4k: https://drive.google.com/file/d/16SRjAZHAe1lvQiwcxUDhTOvWWQbSD0ml/view?usp=sharing
+
 ## Contributing
 
 Contributions are welcome! If you have any ideas, bug reports, or feature requests, please open an issue or submit a pull request. Make sure to follow the code style and guidelines mentioned in the project.
