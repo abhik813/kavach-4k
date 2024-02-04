@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:women_safety_app/child/bottom_page.dart';
-import 'package:women_safety_app/db/share_pref.dart';
-import 'package:women_safety_app/parent/parent_home_screen.dart';
-import 'package:women_safety_app/utils/constants.dart';
-import 'package:women_safety_app/child/bottom_screens/child_home_screen.dart';
+import 'package:kavach_4k/child/bottom_page.dart';
+import 'package:kavach_4k/db/share_pref.dart';
+import 'package:kavach_4k/parent/parent_home_screen.dart';
+import 'package:kavach_4k/utils/constants.dart';
+import 'package:kavach_4k/child/bottom_screens/child_home_screen.dart';
 
 import 'child/child_login_screen.dart';
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Kavach',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.firaSansTextTheme(

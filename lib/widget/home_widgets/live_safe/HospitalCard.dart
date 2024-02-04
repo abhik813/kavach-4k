@@ -25,7 +25,7 @@ class HospitalCard extends StatelessWidget {
                 width: 50,
                 child: Center(
                   child: Image.asset(
-                    'assets/hospital.png',
+                    'assets/doctor.png',
                     height: 32,
                   ),
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:women_safety_app/child/bottom_screens/contacts_page.dart';
-import 'package:women_safety_app/child/bottom_screens/review_page.dart';
+import 'package:kavach_4k/child/bottom_screens/contacts_page.dart';
+import 'package:kavach_4k/child/bottom_screens/review_page.dart';
 
 import 'bottom_screens/add_contacts.dart';
 import 'bottom_screens/chat_page.dart';

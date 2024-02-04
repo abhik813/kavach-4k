@@ -47,7 +47,7 @@ class NationalEmergency extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          ' Women Hepline',
+                          ' Women Helpline',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

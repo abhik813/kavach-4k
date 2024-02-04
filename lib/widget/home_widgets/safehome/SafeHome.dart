@@ -4,8 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:women_safety_app/db/db_services.dart';
-import 'package:women_safety_app/model/contactsm.dart';
+import 'package:kavach_4k/db/db_services.dart';
+import 'package:kavach_4k/model/contactsm.dart';
 
 class SafeHome extends StatefulWidget {
   @override
@@ -16,7 +16,7 @@ class _SafeHomeState extends State<SafeHome> {
   Position? _curentPosition;
   String? _curentAddress;
   LocationPermission? permission;
-  _getpermission() async => await (Permission.sms).request();
+  _getpermission() =>  (Permission.sms).request();
   _isPermissionGranted() async => await Permission.sms.status.isGranted;
   _sendSms(String phoneNumber, String message, {int? simSlot}) async {
     SmsStatus result = await BackgroundSms.sendMessage(
@@ -109,7 +109,7 @@ class _SafeHomeState extends State<SafeHome> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "SEND YOUR CUURENT LOCATION IMMEDIATELY TO YOU EMERGENCY CONTACTS",
+                  "SEND YOUR CURRENT LOCATION IMMEDIATELY TO YOU EMERGENCY CONTACTS",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),
                 ),
@@ -185,7 +185,7 @@ class _SafeHomeState extends State<SafeHome> {
               )),
               ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.asset('assets/route.jpg')),
+                  child: Image.asset('assets/location.jpg')),
             ],
           ),
         ),
@@ -215,7 +215,7 @@ class PrimaryButton extends StatelessWidget {
           style: TextStyle(fontSize: 17),
         ),
         style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.pink,
+            backgroundColor: Colors.lightGreen,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30))),
       ),

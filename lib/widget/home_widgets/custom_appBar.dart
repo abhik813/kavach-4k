@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:women_safety_app/utils/quotes.dart';
+import 'package:kavach_4k/utils/quotes.dart';
 
 // ignore: must_be_immutable
 class CustomAppBar extends StatelessWidget {

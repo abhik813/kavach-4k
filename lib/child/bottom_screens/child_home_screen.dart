@@ -6,12 +6,12 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shake/shake.dart';
-import 'package:women_safety_app/db/db_services.dart';
-import 'package:women_safety_app/model/contactsm.dart';
-import 'package:women_safety_app/widget/home_widgets/CustomCarouel.dart';
-import 'package:women_safety_app/widget/home_widgets/custom_appBar.dart';
+import 'package:kavach_4k/db/db_services.dart';
+import 'package:kavach_4k/model/contactsm.dart';
+import 'package:kavach_4k/widget/home_widgets/CustomCarouel.dart';
+import 'package:kavach_4k/widget/home_widgets/custom_appBar.dart';
 
-import '../../widget/home_widgets/Emergency.dart';
+import '../../widget/home_widgets/emergency.dart';
 import '../../widget/home_widgets/livesafe.dart';
 import '../../widget/home_widgets/safehome/SafeHome.dart';
 
@@ -168,15 +168,50 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.lightGreen,
+        title: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: CircleAvatar(
+                  radius: 25.0,
+                  backgroundColor: Colors.transparent,
+                  child: Image.asset(
+                    'assets/kavach.png',
+                    width: 50.0,
+                    height: 50.0,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Text(
+              'Kavach-4k',
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w600,
+                fontSize: 25.0,
+                color: Colors.black87,
+            
+                // Add more styling properties as needed
+              ),
+            ),
+              ],
+          ),
+        ),
+        // Add more properties to customize the AppBar
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              CustomAppBar(
-                quoteIndex: qIndex,
-                onTap: getRandomQuote(),
-              ),
+              // CustomAppBar(
+              //   quoteIndex: qIndex,
+              //   onTap: getRandomQuote(),
+              // ),
               Expanded(
                 child: ListView(
                   shrinkWrap: true,

@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:women_safety_app/child/bottom_screens/child_home_screen.dart';
+import 'package:kavach_4k/child/bottom_page.dart';
+import 'package:kavach_4k/child/bottom_screens/child_home_screen.dart';
 import '../components/PrimaryButton.dart';
 import '../components/SecondaryButton.dart';
 import '../components/custom_textfield.dart';
@@ -48,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
           } else {
             MySharedPreffrences.saveUserType('child');
 
-            goTo(context, HomeScreen());
+            goTo(context, BottomPage());
           }
         });
       }
@@ -165,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Frogot Password?",
+                                "Forgot Password?",
                                 style: TextStyle(fontSize: 18),
                               ),
                               SecondaryButton(

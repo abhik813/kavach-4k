@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:women_safety_app/model/user_model.dart';
+import 'package:kavach_4k/model/user_model.dart';
 
 import '../components/PrimaryButton.dart';
 import '../components/SecondaryButton.dart';
