@@ -107,6 +107,9 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto-Medium.ttf
+    - family: Ballo
+      fonts:
+        - asset: assets/BalloFont.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

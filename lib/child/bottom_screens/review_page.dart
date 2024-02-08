@@ -47,12 +47,16 @@ class _ReviewPageState extends State<ReviewPage> {
                   ),
                 )),
             actions: [
-              PrimaryButton(
-                  title: "SAVE",
-                  onPressed: () {
-                    saveReview();
-                    Navigator.pop(context);
-                  }),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.greenAccent[700], // Set the background color to blue
+                ),
+                onPressed: () {
+                  saveReview();
+                  Navigator.pop(context);
+                },
+                child: Text("SAVE"),
+              ),
               TextButton(
                   child: Text("Cancel"),
                   onPressed: () {
@@ -80,67 +84,80 @@ class _ReviewPageState extends State<ReviewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Padding(
+          padding: const EdgeInsets.only(left: 0.0, top: 5.0, bottom: 10.0),  // Adjust the left padding as needed
+          child: Text(
+            'Recent Reviews',
+            style: TextStyle(fontSize: 30, color: Colors.black),
+          ),
+        ),
+        backgroundColor: Colors.greenAccent[700],
+        elevation: 0,
+
+      ),
       body: isSaving == true
           ? Center(child: CircularProgressIndicator())
           : SafeArea(
         child: Column(
           children: [
-            Container(
-              color: Colors.lightGreen,
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Recent Reviews",
-                  style: TextStyle(fontSize: 24, color: Colors.black, fontFamily: 'Roboto', ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: StreamBuilder(
-                stream: FirebaseFirestore.instance
-                    .collection('reviews')
-                    .snapshots(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
 
-                  return ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final data = snapshot.data!.docs[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: Card(
-                          elevation: 10,
-                          // color: Colors.primaries[Random().nextInt(17)],
-                          color : Colors.lightGreen.withOpacity(0.7),
-                          child: ListTile(
-                            title: Text(
-                              data['location'],
-                              style: TextStyle(
-                                  fontSize: 18, color: Colors.black),
+            Expanded(
+              child: Container(
+                color: Colors.lightGreen[250],
+                child: StreamBuilder(
+                  stream: FirebaseFirestore.instance.collection('reviews').snapshots(),
+                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+
+                    return ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final data = snapshot.data!.docs[index];
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 3.0, bottom: 3.0, left: 3.0, right: 3.0),
+                          child: Card(
+                            elevation: 15,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                            subtitle: Text(data['views'],
-                              style: TextStyle(
-                                color: Colors.brown,
-                                fontSize: 16,
-                              ),),
+                            color: Colors.limeAccent[100],
+                            child: ListTile(
+                              title: Padding(
+                                padding: const EdgeInsets.only(top: 6.0, bottom: 15.0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      data['location'],
+                                      style: TextStyle(fontSize: 22, color: Colors.black, fontFamily: 'Roboto'),
+                                    ),
+                                    SizedBox(width: 8.0),
+                                  ],
+                                ),
+                              ),
+                              subtitle: Text(
+                                data['views'],
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  );
-                },
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: Colors.greenAccent[700],
         onPressed: () {
           showAlert(context);
         },
@@ -148,4 +165,5 @@ class _ReviewPageState extends State<ReviewPage> {
       ),
     );
   }
+
 }

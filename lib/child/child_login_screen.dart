@@ -164,26 +164,26 @@ class _LoginScreenState extends State<LoginScreen> {
                         Container(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Forgot Password?",
-                                style: TextStyle(fontSize: 18),
-                              ),
-                              SecondaryButton(
-                                  title: 'click here', onPressed: () {}),
-                            ],
+                            // children: [
+                            //   Text(
+                            //     "Forgot Password?",
+                            //     style: TextStyle(fontSize: 18),
+                            //   ),
+                            //   SecondaryButton(
+                            //       title: 'click here', onPressed: () {}),
+                            // ],
                           ),
                         ),
                         SecondaryButton(
-                            title: 'Register as child',
+                            title: 'Register',
                             onPressed: () {
                               goTo(context, RegisterChildScreen());
                             }),
-                        SecondaryButton(
-                            title: 'Register as Parent',
-                            onPressed: () {
-                              goTo(context, RegisterParentScreen());
-                            }),
+                        // SecondaryButton(
+                        //     title: 'Register as Parent',
+                        //     onPressed: () {
+                        //       goTo(context, RegisterParentScreen());
+                        //     }),
                       ],
                     ),
                   ),

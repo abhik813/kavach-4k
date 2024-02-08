@@ -57,11 +57,13 @@ class _AddContactsPageState extends State<AddContactsPage> {
     }
     return SafeArea(
       child: Container(
+
         padding: EdgeInsets.all(12),
         child: Column(
+
           children: [
-            PrimaryButton(
-              title: "Add Trusted Contacts",
+
+            ElevatedButton(
               onPressed: () async {
                 bool result = await Navigator.push(
                   context,
@@ -73,7 +75,12 @@ class _AddContactsPageState extends State<AddContactsPage> {
                   showList();
                 }
               },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.greenAccent[700], // Set the background color to blue
+              ),
+              child: Text("Add Trusted Contacts",style: TextStyle(fontSize: 31, color: Colors.black, fontFamily: 'ballo'),),
             ),
+
             Expanded(
               child: ListView.builder(
                 itemCount: count,

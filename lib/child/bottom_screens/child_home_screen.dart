@@ -169,13 +169,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: Colors.greenAccent[700],
         title: Center(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
               children: [
               Padding(
-                padding: const EdgeInsets.only(right: 8.0),
+                padding: const EdgeInsets.only(top: 5.0, bottom: 10.0, left: 0.0, right:3.0),
                 child: CircleAvatar(
                   radius: 25.0,
                   backgroundColor: Colors.transparent,
@@ -191,10 +191,10 @@ class _HomeScreenState extends State<HomeScreen> {
               'Kavach-4k',
               style: TextStyle(
                 fontFamily: 'Roboto',
-                fontWeight: FontWeight.w600,
-                fontSize: 25.0,
+                fontWeight: FontWeight.w400,
+                fontSize: 28.0,
                 color: Colors.black87,
-            
+
                 // Add more styling properties as needed
               ),
             ),

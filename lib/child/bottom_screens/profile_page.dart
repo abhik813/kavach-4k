@@ -37,8 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
         .collection("users")
         .where("childEmail", isEqualTo: childEmail)
         .get();
-    final userData =
-        snapShot.docs.map((e) => UserModel.fromSnapshot(e)).single;
+    final userData = snapShot.docs.map((e) => UserModel.fromSnapshot(e)).single;
     return userData;
   }
 
@@ -62,8 +61,14 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
-        backgroundColor: Colors.lightGreen,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 0.0, top: 5.0, bottom: 10.0),  // Adjust the left padding as needed
+          child: Text(
+            'Profile',
+            style: TextStyle(fontSize: 30, color: Colors.black),
+          ),
+        ),
+        backgroundColor: Colors.greenAccent[700],
         elevation: 0,
         actions: [
           IconButton(
@@ -73,7 +78,8 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       ),
       body: Container(
-        color: Colors.green,
+        width: MediaQuery.of(context).size.width,
+        color: Colors.white,
         child: FutureBuilder(
           future: getUserData(),
           builder: ((context, snapshot) {
@@ -81,64 +87,128 @@ class _ProfilePageState extends State<ProfilePage> {
               if (snapshot.hasData) {
                 UserModel userData = snapshot.data as UserModel;
                 return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     CircleAvatar(
                       radius: 80,
-                      backgroundImage: AssetImage('assets/logo.png'),
+                      backgroundImage: AssetImage('assets/icon2.jpg'),
                     ),
-                    SizedBox(height: 16),
-                    Text(
-                      'Hello,',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Hello, ',
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        Text(
+                          userData.name ?? 'User',
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(height: 8),
-                    Text(
-                      userData.name ?? 'User',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                    Card(
+                      elevation: 8,
+                      color: Colors.greenAccent[700],
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Contact Number',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+
+                          ],
+                        ),
                       ),
                     ),
-                    SizedBox(height: 8),
-                    Text(
-                      'Contact Number:',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 4.0),
+                            child: Text(
+                              userData.phone ?? 'N/A',
+                              style: TextStyle(
+                                fontSize: 21,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 150,
+                            height: 5,
+                            child: Divider(
+                              color: Colors.grey[900],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Text(
-                      userData.phone ?? 'N/A',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
+
+                    Card(
+                      elevation: 8,
+                      color: Colors.greenAccent[700],
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 55.0, right:55.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Email',
+                              style: TextStyle(
+                                fontSize: 21,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+
+                          ],
+                        ),
                       ),
                     ),
-                    SizedBox(height: 16),
-                    Text(
-                      'Email:',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 4.0),
+                            child: Text(
+                              userData.childEmail ?? 'N/A',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 4,
+                            width: 220,
+                            child: Divider(
+                              color: Colors.grey[700],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Text(
-                      userData.childEmail ?? 'N/A',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 24),
+
+                    SizedBox(height: 15),
                     // You can add more user details or customize as needed
                   ],
                 );
@@ -153,4 +223,5 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+
 }

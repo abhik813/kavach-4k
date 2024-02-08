@@ -51,9 +51,9 @@ class _BottomPageState extends State<BottomPage> {
                 Icons.contacts,
               )),
           BottomNavigationBarItem(
-              label: 'chats',
+              label: 'voice',
               icon: Icon(
-                Icons.chat,
+                Icons.keyboard_voice_rounded,
               )),
           BottomNavigationBarItem(
               label: 'Profile',
