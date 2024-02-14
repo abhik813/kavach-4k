@@ -110,6 +110,15 @@ flutter:
     - family: Ballo
       fonts:
         - asset: assets/BalloFont.ttf
+    - family: imf
+      fonts:
+        - asset: assets/fonts/IMFellDoublePicaSC-Regular.ttf
+    - family: protest
+      fonts:
+        - asset: assets/fonts/ProtestRiot-Regular.ttf
+    - family: oswald
+      fonts:
+        - asset: assets/fonts/Oswald-VariableFont_wght.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

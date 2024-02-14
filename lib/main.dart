@@ -35,17 +35,22 @@ class MyApp extends StatelessWidget {
       home: FutureBuilder(
         future: MySharedPreffrences.getUserType(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.data == "") {
-            return LoginScreen();
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return progressIndicator(context);
+          } else {
+            final userType = snapshot.data;
+            if (userType == null || userType.isEmpty) {
+              return LoginScreen();
+            } else if (userType == "child") {
+              return BottomPage();
+            } else if (userType == "parent") {
+              return ParentHomeScreen();
+            } else {
+              // Clear user type from shared preferences
+              MySharedPreffrences.clearUserType();
+              return LoginScreen();
+            }
           }
-          if (snapshot.data == "child") {
-            return BottomPage();
-          }
-          if (snapshot.data == "parent") {
-            return ParentHomeScreen();
-          }
-
-          return progressIndicator(context);
         },
       ),
     );

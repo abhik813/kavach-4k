@@ -89,7 +89,7 @@ class _ReviewPageState extends State<ReviewPage> {
           padding: const EdgeInsets.only(left: 0.0, top: 5.0, bottom: 10.0),  // Adjust the left padding as needed
           child: Text(
             'Recent Reviews',
-            style: TextStyle(fontSize: 30, color: Colors.black),
+            style: TextStyle(fontSize: 30, color: Colors.black, fontFamily: 'imf',),
           ),
         ),
         backgroundColor: Colors.greenAccent[700],

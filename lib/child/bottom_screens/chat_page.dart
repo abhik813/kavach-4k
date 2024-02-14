@@ -267,7 +267,11 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Voice Page"),
+        backgroundColor: Colors.greenAccent[700],
+        title: Text("Voice Page", style: TextStyle(
+          fontSize: 30.0,
+          fontFamily: 'imf',
+        )),
       ),
       body: Center(
         child: Column(

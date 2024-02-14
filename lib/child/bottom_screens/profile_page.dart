@@ -65,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
           padding: const EdgeInsets.only(left: 0.0, top: 5.0, bottom: 10.0),  // Adjust the left padding as needed
           child: Text(
             'Profile',
-            style: TextStyle(fontSize: 30, color: Colors.black),
+            style: TextStyle(fontSize: 30, color: Colors.black, fontFamily: 'imf',),
           ),
         ),
         backgroundColor: Colors.greenAccent[700],
@@ -126,6 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             Text(
                               'Contact Number',
                               style: TextStyle(
+
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -219,6 +220,7 @@ class _ProfilePageState extends State<ProfilePage> {
               return const Center(child: CircularProgressIndicator());
             }
           }),
+
         ),
       ),
     );

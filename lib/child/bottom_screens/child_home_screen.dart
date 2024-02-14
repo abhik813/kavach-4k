@@ -190,10 +190,11 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(
               'Kavach-4k',
               style: TextStyle(
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w400,
-                fontSize: 28.0,
+                fontFamily: 'imf',
+                fontWeight: FontWeight.w500,
+                fontSize: 30.0,
                 color: Colors.black87,
+
 
                 // Add more styling properties as needed
               ),
