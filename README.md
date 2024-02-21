@@ -1,6 +1,6 @@
 # Kavach-4K
 
-Introducing Kavach-4k, a revolutionary mobile application dedicated to enhancing the safety of women during solo travel, especially in isolated or unfamiliar surroundings. The core feature of Kavach-4k is the "Shake for Help" functionality, enabling users to discreetly trigger an emergency alert that sends both a distress message and their precise location to pre-saved contacts within the app. With a user-friendly interface, women can easily manage their emergency contacts by seamlessly saving them within the application. Kavach-4k integrates Google Maps, allowing users to effortlessly locate nearby hospitals, police stations, bus stands, and pharmacies based on their real-time position. To expedite the process of seeking assistance, the app includes a Quick Police Call Button, sparing users the need to recall emergency numbers. Furthermore, the "Send Alert" button empowers users to manually share distress signals and their location with selected contacts. Emphasizing community engagement, Kavach-4k enables users to share insightful reviews of their travel experiences and provides tips on staying vigilant in unfamiliar places. The registration process is streamlined, requiring only the user's name and phone number, ensuring accessibility for all. Kavach-4k is not just an app; it's a comprehensive safety companion, designed to empower women on their solo journeys, fostering a connected and vigilant community dedicated to women's security.
+Introducing Kavach-4k, an innovative mobile application designed to enhance the safety of women during solo travel, especially in isolated or unfamiliar surroundings. The app's standout feature is the "Scream Alert" functionality, automatically triggering an emergency alert when a girl screams, ensuring prompt assistance even in challenging situations. This discreet feature sends both a distress message and the user's precise location to pre-saved contacts, fostering a swift response network for real-time safety. With a user-friendly interface, seamless emergency contact management, and integration with Google Maps, Kavach-4k empowers users to locate nearby facilities quickly. The app's commitment to community engagement is evident through features allowing users to share experiences, providing valuable tips for staying vigilant. The streamlined registration process ensures accessibility, making Kavach-4k more than just an app; it's a holistic safety companion fostering a connected and vigilant community dedicated to women's security.
 
 <!-- # Screenshots
 <div><img src="./assets/image/screenshot.jpg"></div> -->
@@ -53,8 +53,11 @@ Merges advanced technology with practical features to create a powerful safety c
 - Women can trigger an emergency alert by shaking their phone.
 - Sends an alert message and the user's location to pre-saved contacts within the app.
 
+### 7. Send Scream Alert 
+- The app initiates an emergency alert when detecting a girl's scream.
+- It promptly sends both the distress message and her location to pre-saved contacts for immediate assistance.
 
-### 7. User Reviews and Tips:
+### 8. User Reviews and Tips:
 - Facilitates a community-driven platform where users can share reviews and insights about their travel experiences.
 - Encourages a supportive network and provides valuable tips on staying alert in new locations.
 
