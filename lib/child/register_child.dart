@@ -200,7 +200,7 @@ class _RegisterChildScreenState extends State<RegisterChildScreen> {
                                     validate: (password) {
                                       if (password!.isEmpty ||
                                           password.length < 7) {
-                                        return 'enter correct password';
+                                        return 'enter correct password - Atleast 7 characters';
                                       }
                                       return null;
                                     },

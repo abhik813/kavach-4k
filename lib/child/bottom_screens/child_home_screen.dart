@@ -11,6 +11,7 @@ import 'package:kavach_4k/model/contactsm.dart';
 import 'package:kavach_4k/widget/home_widgets/CustomCarouel.dart';
 import 'package:kavach_4k/widget/home_widgets/custom_appBar.dart';
 
+
 import '../../widget/home_widgets/emergency.dart';
 import '../../widget/home_widgets/livesafe.dart';
 import '../../widget/home_widgets/safehome/SafeHome.dart';
@@ -173,33 +174,33 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Center(
           child: Row(
             // mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+            children: [
               Padding(
-                padding: const EdgeInsets.only(top: 5.0, bottom: 10.0, left: 0.0, right:3.0),
+                padding: const EdgeInsets.only(top: 5.0, bottom: 10.0, left: 0.0, right:10.0),
                 child: CircleAvatar(
                   radius: 25.0,
                   backgroundColor: Colors.transparent,
-                  child: Image.asset(
-                    'assets/kavach.png',
-                    width: 50.0,
-                    height: 50.0,
-                    fit: BoxFit.cover,
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/mainicon4.jpg',
+                      width: 50.0,
+                      height: 50.0,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
               Text(
-              'Kavach-4k',
-              style: TextStyle(
-                fontFamily: 'imf',
-                fontWeight: FontWeight.w500,
-                fontSize: 30.0,
-                color: Colors.black87,
-
-
-                // Add more styling properties as needed
+                'Kavach-4k',
+                style: TextStyle(
+                  fontFamily: 'imf',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 30.0,
+                  color: Colors.black87,
+                  // Add more styling properties as needed
+                ),
               ),
-            ),
-              ],
+            ],
           ),
         ),
         // Add more properties to customize the AppBar
@@ -217,7 +218,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListView(
                   shrinkWrap: true,
                   children: [
-                    CustomCarouel(),
+                    // CustomCarouel(),
+
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
@@ -237,6 +239,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     LiveSafe(),
                     SafeHome(),
+                    CustomCarouel(),
+
                   ],
                 ),
               ),
@@ -246,6 +250,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
 
 //  _handleLocationPermission() {}
 }

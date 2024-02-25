@@ -78,7 +78,7 @@ class _AddContactsPageState extends State<AddContactsPage> {
               style: ElevatedButton.styleFrom(
                 primary: Colors.greenAccent[700], // Set the background color to blue
               ),
-              child: Text("Add Trusted Contacts",style: TextStyle(fontSize: 31, color: Colors.black, fontFamily: 'ballo'),),
+              child: Text("Add Trusted Contacts",style: TextStyle(fontSize: 28, color: Colors.black87, fontFamily: 'Roboto',),),
             ),
 
             Expanded(

@@ -13,6 +13,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:kavach_4k/db/db_services.dart';
 import 'package:kavach_4k/model/contactsm.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -22,11 +23,10 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-
   Position? _curentPosition;
   String? _curentAddress;
   LocationPermission? permission;
-  _getpermission() =>  (Permission.sms).request();
+  _getpermission() => (Permission.sms).request();
   _isPermissionGranted() async => await Permission.sms.status.isGranted;
   _sendSms(String phoneNumber, String message, {int? simSlot}) async {
     SmsStatus result = await BackgroundSms.sendMessage(
@@ -104,6 +104,8 @@ class _ChatPageState extends State<ChatPage> {
   bool collecting = false;
   late AudioRecorder _audioRecorder;
   late String _filePath;
+  bool playing = false;
+  final player = AudioPlayer();
 
   @override
   void initState() {
@@ -170,7 +172,7 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Future<void> sendAudioFile() async {
-    final uri = Uri.parse("https://getprediction-d72eydv5ca-et.a.run.app/");
+    final uri = Uri.parse("https://getpredictions-zwofr6ivcq-et.a.run.app/");
 
     final fileBytes = await File(_filePath).readAsBytes();
 
@@ -190,30 +192,29 @@ class _ChatPageState extends State<ChatPage> {
         final Map<String, dynamic> result_now = json.decode(jsonResponse.body);
         final accuracy = result_now['accuracy'];
         final predictedClass = result_now['predicted_class'];
-        if(predictedClass == "Danger" && accuracy> 60){
+        if (predictedClass == "Danger" && accuracy > 60) {
           _getCurrentLocation();
           String recipients = "";
-          List<TContact> contactList =
-          await DatabaseHelper().getContactList();
+          List<TContact> contactList = await DatabaseHelper().getContactList();
           print(contactList.length);
           if (contactList.isEmpty) {
-            Fluttertoast.showToast(
-                msg: "emergency contact is empty");
+            Fluttertoast.showToast(msg: "emergency contact is empty");
           } else {
             String messageBody =
                 "https://www.google.com/maps/search/?api=1&query=${_curentPosition!.latitude}%2C${_curentPosition!.longitude}. $_curentAddress";
 
             if (await _isPermissionGranted()) {
               contactList.forEach((element) {
-                _sendSms("${element.number}",
-                    "i am in trouble $messageBody");
+                _sendSms("${element.number}", "i am in trouble $messageBody");
               });
             } else {
               Fluttertoast.showToast(msg: "something wrong");
             }
           }
-
-
+        }
+        if (predictedClass == "Danger" && accuracy > 90) {
+          playing = true;
+          await player.play(AssetSource('alertalarm.wav'));
         }
         Fluttertoast.showToast(
           msg: "Accuracy: $accuracy, Class: $predictedClass",
@@ -230,7 +231,6 @@ class _ChatPageState extends State<ChatPage> {
     } catch (e) {
       print('Error: $e');
     }
-
   }
 
   Future<void> collectAudio() async {
@@ -238,17 +238,17 @@ class _ChatPageState extends State<ChatPage> {
     if (await _audioRecorder.hasPermission()) {
       while (collecting) {
         // Record for 3 seconds
-        await startRecording();
+        startRecording();
         await Future.delayed(Duration(milliseconds: 3000));
         await stopRecording();
 
         // Api fetching
         await sendAudioFile();
         //.............
-
-        await cancelRecording();
+        cancelRecording();
         // Rest for 10 seconds
-        await Future.delayed(Duration(milliseconds: 10000));
+        await Future.delayed(Duration(milliseconds: 3000));
+        print("Recording number: " + i.toString());
         i = i + 1;
       }
     } else {
@@ -266,46 +266,113 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.greenAccent[700],
-        title: Text("Voice Page", style: TextStyle(
-          fontSize: 30.0,
-          fontFamily: 'imf',
-        )),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (collecting)
-              ElevatedButton(
-                onPressed: () {
-                  // stopRecording();
-                  setState(() {
-                    collecting = false;
-                  });
-                },
-                child: Text("Stop Recording"),
-              )
-            else
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    collecting = true;
-                  });
-                  collectAudio();
-                },
-                child: Text("Start Recording"),
-              ),
-            SizedBox(height: 16),
-            if (!isRecording && _filePath.isNotEmpty)
-              ElevatedButton(
-                onPressed: cancelRecording,
-                child: Text("Cancel Recording"),
-              ),
-          ],
+        appBar: AppBar(
+
+          title: Text("Voice Page",style: TextStyle(
+              fontSize: 30.0,
+              fontFamily: 'imf',)),
+          backgroundColor: Colors.greenAccent[700],
         ),
-      ),
+        body: Container(
+          alignment: Alignment.center,
+          child: SingleChildScrollView(
+
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (playing)
+                  ElevatedButton(
+                      onPressed: () async {
+                        playing = false;
+                        await player.stop();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                        Color.fromARGB(255, 182, 35, 24), // Button color
+                        foregroundColor: Colors.white, // Text color
+                        side: BorderSide(
+                            color: Colors.white, width: 2), // White outline
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          'Stop Alert Beep',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      )),
+                // Display a photo or image widget here
+                Image.asset(
+                  'assets/Micnew.png', // replace with your image file path
+                  width: 270, // set the width as needed
+                  height: 270, // set the height as needed
+                  // add more styling properties if required
+                ),
+
+                SizedBox(height: 16),
+                SizedBox(height: 16),
+                SizedBox(height: 16),
+                if (collecting)
+                  Image.asset(
+                    "assets/soundgif.gif",
+                    height: 125.0,
+
+                    width: 125.0,
+                  ),
+                SizedBox(height: 16),
+                SizedBox(height: 16),
+                SizedBox(height: 16),
+                SizedBox(height: 16),
+                if (collecting)
+                  ElevatedButton(
+                    onPressed: () {
+                      // stopRecording();
+                      setState(() {
+                        collecting = false;
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.black,
+                      minimumSize: Size(120, 60),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0), // Adjust the value as needed
+                      ),// Set the background color to blue
+                    ),
+                    child: Text("Stop Recording",style: TextStyle(fontSize: 28, color: Colors.white, )),
+                  )
+                else
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        collecting = true;
+                      });
+                      collectAudio();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.black,
+                      minimumSize: Size(120, 60),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0), // Adjust the value as needed
+                      ),// Set the background color to blue
+                    ),
+                    child: Text("Start Recording", style: TextStyle(fontSize: 28, color: Colors.white, )),
+                  ),
+                SizedBox(height: 16),
+                if (!isRecording && _filePath.isNotEmpty)
+                  ElevatedButton(
+                    onPressed: cancelRecording,
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.black,
+                      minimumSize: Size(120, 60),// Set the background color to blue
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0), // Adjust the value as needed
+                      ),
+                    ),
+                    child: Text("Cancel Recording", style: TextStyle(fontSize: 28, color: Colors.white, )),
+                  ),
+              ],
+            ),
+          ),
+        )
     );
   }
 }

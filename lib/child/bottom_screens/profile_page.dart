@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:kavach_4k/child/child_login_screen.dart';
 import 'package:kavach_4k/model/user_model.dart';
 import 'package:kavach_4k/child/bottom_page.dart'; // Import necessary files
+import 'package:kavach_4k/model/contactsm.dart';
+import 'package:kavach_4k/db/db_services.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -47,6 +49,10 @@ class _ProfilePageState extends State<ProfilePage> {
       return getUserDetails(userEmail);
     }
   }
+  Future<bool> getUserCon() async {
+    List<TContact> contactList = await DatabaseHelper().getContactList();
+    return contactList.isEmpty;
+  }
 
   // Function to handle logout
   void _logout() async {
@@ -65,7 +71,7 @@ class _ProfilePageState extends State<ProfilePage> {
           padding: const EdgeInsets.only(left: 0.0, top: 5.0, bottom: 10.0),  // Adjust the left padding as needed
           child: Text(
             'Profile',
-            style: TextStyle(fontSize: 30, color: Colors.black, fontFamily: 'imf',),
+            style: TextStyle(fontSize: 30, color: Colors.black,fontFamily: 'imf'),
           ),
         ),
         backgroundColor: Colors.greenAccent[700],
@@ -78,6 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       ),
       body: Container(
+
         width: MediaQuery.of(context).size.width,
         color: Colors.white,
         child: FutureBuilder(
@@ -89,9 +96,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+
                     CircleAvatar(
                       radius: 80,
-                      backgroundImage: AssetImage('assets/icon2.jpg'),
+                      backgroundImage: AssetImage('assets/icon5.jpg'),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -114,7 +122,58 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 8),
+                    FutureBuilder<bool>(
+                      future: getUserCon(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          if (snapshot.data == true) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Card(
+                                  elevation: 8,
+                                  color: Colors.greenAccent[700],
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          'Profile',
+                                          style: TextStyle(
+                                            fontFamily: 'imf',
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+
+                                SizedBox(height: 8),
+                                Text(
+                                  '50% completed',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Image.asset(
+                                  'assets/profileNotCompleted.jpg',
+                                  width: 140,
+                                  height: 60,
+                                ),
+                              ],
+                            );
+                          } else {
+                            return SizedBox.shrink();
+                          }
+                        } else {
+                          return const Center(child: CircularProgressIndicator());
+                        }
+                      },
+                    ),
                     Card(
                       elevation: 8,
                       color: Colors.greenAccent[700],
@@ -126,7 +185,6 @@ class _ProfilePageState extends State<ProfilePage> {
                             Text(
                               'Contact Number',
                               style: TextStyle(
-
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -161,6 +219,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                     ),
+
 
                     Card(
                       elevation: 8,
@@ -213,6 +272,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     // You can add more user details or customize as needed
                   ],
                 );
+
               } else {
                 return const Center(child: Text('Something went wrong'));
               }
