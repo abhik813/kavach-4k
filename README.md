@@ -57,7 +57,11 @@ Merges advanced technology with practical features to create a powerful safety c
 - The app initiates an emergency alert when detecting a girl's scream.
 - It promptly sends both the distress message and her location to pre-saved contacts for immediate assistance.
 
-### 8. User Reviews and Tips:
+### 8. Alert Beep Functionality:
+- In instances where the user's sound is accurately recognized as being in danger, the app emits a high-frequency sound.
+- This can help scare away the person causing trouble and let nearby people know that someone needs help.
+
+### 9. User Reviews and Tips:
 - Facilitates a community-driven platform where users can share reviews and insights about their travel experiences.
 - Encourages a supportive network and provides valuable tips on staying alert in new locations.
 
